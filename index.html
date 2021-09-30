@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
-        <script>
-            window.jQuery || document.write("<script src='jquery-3.6.0.js'><\/script>");
-        </script>
-    </head>
-    <body>
-        <script type="text/javascript">
-            $('document').ready(()=>{
-                $('#button1').click(()=>{
-                    alert('it is working ok');
-                });
-            });
-        </script>
-        <input type="button" value="click" id="button1"/>
-    </body>
+  <head>
+    <title></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+    <script>
+      window.jQuery ||
+        document.write("<script src='jquery-3.6.0.js'><\/script>");
+    </script>
+  </head>
+  <body>
+    <input type="button" value="click" id="button1" />
+    <div title="test">
+      <text> DIV</text>
+    </div>
+    <span style="color: green"> span </span>
+    <ul>
+      <li>foo</li>
+      <li>bar</li>
+    </ul>
+    <div title="something">Title something.</div>
+    <h1 title="something">h1 element</h1>
+    <script type="text/javascript">
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+
+        for (i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * letters.length)];
+        }
+        return color;
+      }
+
+      $("document").ready(() => {
+        $("#button1").click(() => {
+          $("div.test").each(function () {
+            console.log("normal function this: ", this);
+          });
+        });
+        setInterval(function () {
+          $("div[title],[style]").css("background-color", getRandomColor());
+        }, 1999);
+      });
+    </script>
+  </body>
 </html>
