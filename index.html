@@ -13,6 +13,14 @@
     <input type="checkbox" name="money" value="money">money
     <input type="checkbox" name="time" value="time">time
     <input type="checkbox" name="happiness" value="happiness">happiness
+    <input type="text" disabled >
+    <div title="mr bombastic">div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <h1>text 1</h1>
+    <h1>text 2</h1>7
+
     <h1 id='number'></h1>
     <script type="text/javascript">
       function getRandomColor() {
@@ -28,14 +36,21 @@
         const number = Math.floor(Math.random() * checkedBoxes.length);
         checkedBoxes.eq(number).prop( "checked", false );
       }
+      console.log(typeof($('div')));
+      console.log($('div'));
 
       $("document").ready(() => {
-        $("input[type='checkbox'").change(function () {
-            const checkedBoxes = $('[type=checkbox]:checked');
-            const number = checkedBoxes.length;
-            if (number === 3) uncheckRandomBox(checkedBoxes);
+          $('div')
+          .slideUp(2000)
+          .slideDown(2000)
+          .attr('title', 'super global secret');
+          setTimeout(function (){
+              $('h1').wrap('<div style = "color : blue"></div>')
+              setTimeout(function(){
+                $('h1').unwrap();
+              },5000)
+          },5000)
 
-          });
         });
 
     </script>
