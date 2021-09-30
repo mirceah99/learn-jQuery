@@ -9,17 +9,11 @@
     </script>
   </head>
   <body>
-    <input type="button" value="click" id="button1" />
-    <div title="test">
-      <text> DIV</text>
-    </div>
-    <span style="color: green"> span </span>
-    <ul>
-      <li>foo</li>
-      <li>bar</li>
-    </ul>
-    <div title="something">Title something.</div>
-    <h1 title="something">h1 element</h1>
+    <h1 title="something">Select something:</h1>
+    <input type="checkbox" name="money" value="money">money
+    <input type="checkbox" name="time" value="time">time
+    <input type="checkbox" name="happiness" value="happiness">happiness
+    <h1 id='number'></h1>
     <script type="text/javascript">
       function getRandomColor() {
         const letters = "0123456789ABCDEF";
@@ -30,17 +24,20 @@
         }
         return color;
       }
+      function uncheckRandomBox(checkedBoxes){
+        const number = Math.floor(Math.random() * checkedBoxes.length);
+        checkedBoxes.eq(number).prop( "checked", false );
+      }
 
       $("document").ready(() => {
-        $("#button1").click(() => {
-          $("div.test").each(function () {
-            console.log("normal function this: ", this);
+        $("input[type='checkbox'").change(function () {
+            const checkedBoxes = $('[type=checkbox]:checked');
+            const number = checkedBoxes.length;
+            if (number === 3) uncheckRandomBox(checkedBoxes);
+
           });
         });
-        setInterval(function () {
-          $("div[title],[style]").css("background-color", getRandomColor());
-        }, 1999);
-      });
+
     </script>
   </body>
 </html>
