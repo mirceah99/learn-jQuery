@@ -15,11 +15,12 @@
     <input type="checkbox" name="happiness" value="happiness">happiness
     <input type="text" disabled >
     <div title="mr bombastic">div1</div>
-    <div>div2</div>
-    <div>div3</div>
-    <div>div4</div>
+    <div>div</div>
+    <div>div</div>
+    <div>div</div>
     <h1>text 1</h1>
-    <h1>text 2</h1>7
+    <h1>text 2</h1>
+    <button id="duplicateLoop">DUPLICATE INFINITE LOOP</button>
 
     <h1 id='number'></h1>
     <script type="text/javascript">
@@ -36,20 +37,19 @@
         const number = Math.floor(Math.random() * checkedBoxes.length);
         checkedBoxes.eq(number).prop( "checked", false );
       }
-      console.log(typeof($('div')));
-      console.log($('div'));
+
 
       $("document").ready(() => {
-          $('div')
-          .slideUp(2000)
-          .slideDown(2000)
-          .attr('title', 'super global secret');
-          setTimeout(function (){
-              $('h1').wrap('<div style = "color : blue"></div>')
-              setTimeout(function(){
-                $('h1').unwrap();
-              },5000)
-          },5000)
+          console.log('ok1');
+          let x = 0;
+        $("#duplicateLoop").click(()=>{
+            console.log("ok");
+            setInterval(() => {
+                console.log(x++);
+
+                $('div').before('<div>div</div>');
+            }, 1000);
+        });
 
         });
 
