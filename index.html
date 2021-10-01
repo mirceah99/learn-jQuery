@@ -7,22 +7,50 @@
       window.jQuery ||
         document.write("<script src='jquery-3.6.0.js'><\/script>");
     </script>
+    <style>
+        .boldClass {
+            font-weight: bold;
+        }
+        .italicClass{
+            font-style: italic;
+        }
+        .colorClass{
+            color: purple;
+        }
+    </style>
   </head>
   <body>
-    <h1 title="something">Select something:</h1>
-    <input type="checkbox" name="money" value="money">money
-    <input type="checkbox" name="time" value="time">time
-    <input type="checkbox" name="happiness" value="happiness">happiness
-    <input type="text" disabled >
-    <div title="mr bombastic">div1</div>
-    <div>div</div>
-    <div>div</div>
-    <div>div</div>
-    <h1>text 1</h1>
-    <h1>text 2</h1>
-    <button id="duplicateLoop">DUPLICATE INFINITE LOOP</button>
+    <div id='text'>Simple text</div>
+    <table>
+        <tr>
+            <td>
+                <input id= "addColor" type="button" value= "add color" style="width: 200px" />
+            </td>
+            <td>
+                <input id= "addItalic" type="button" value= "add italic" style="width: 200px" />
+            </td>
+            <td>
+                <input id= "addBold" type="button" value= "add bold" style="width: 200px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id= "removeColor" type="button" value= "remove color"  style="width: 200px"/>
+            </td>
+            <td>
+                <input id= "removeItalic" type="button" value= "remove italic" style="width: 200px" />
+            </td>
+            <td>
+                <input id= "removeBold" type="button" value= "remove bold" style="width: 200px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id= "toggleClass" type="button" value="toggle class" style=" width: 200px" />
+            </td>
+        </tr>
+    </table>
 
-    <h1 id='number'></h1>
     <script type="text/javascript">
       function getRandomColor() {
         const letters = "0123456789ABCDEF";
@@ -40,17 +68,27 @@
 
 
       $("document").ready(() => {
-          console.log('ok1');
-          let x = 0;
-        $("#duplicateLoop").click(()=>{
-            console.log("ok");
-            setInterval(() => {
-                console.log(x++);
-
-                $('div').before('<div>div</div>');
-            }, 1000);
-        });
-
+        $('#addColor').click(()=>{
+            $('#text').addClass('colorClass');
+        })
+        $('#removeColor').click(()=>{
+            $('#text').removeClass('colorClass');
+        })
+        $('#addItalic').click(()=>{
+            $('#text').addClass('italicClass');
+        })
+        $('#removeItalic').click(()=>{
+            $('#text').removeClass('italicClass');
+        })
+        $('#addBold').click(()=>{
+            $('#text').addClass('boldClass');
+        })
+        $('#removeBold').click(()=>{
+            $('#text').removeClass('boldClass');
+        })
+        $('#toggleClass').click(()=>{
+            $('#text').toggleClass('boldClass italicClass colorClass');
+        })
         });
 
     </script>
