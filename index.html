@@ -3,6 +3,8 @@
   <head>
     <title></title>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
     <script>
       window.jQuery ||
         document.write("<script src='jquery-3.6.0.js'><\/script>");
@@ -20,75 +22,23 @@
     </style>
   </head>
   <body>
-    <div id='text'>Simple text</div>
-    <table>
-        <tr>
-            <td>
-                <input id= "addColor" type="button" value= "add color" style="width: 200px" />
-            </td>
-            <td>
-                <input id= "addItalic" type="button" value= "add italic" style="width: 200px" />
-            </td>
-            <td>
-                <input id= "addBold" type="button" value= "add bold" style="width: 200px" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id= "removeColor" type="button" value= "remove color"  style="width: 200px"/>
-            </td>
-            <td>
-                <input id= "removeItalic" type="button" value= "remove italic" style="width: 200px" />
-            </td>
-            <td>
-                <input id= "removeBold" type="button" value= "remove bold" style="width: 200px" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id= "toggleClass" type="button" value="toggle class" style=" width: 200px" />
-            </td>
-        </tr>
-    </table>
 
     <script type="text/javascript">
-      function getRandomColor() {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-
-        for (i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * letters.length)];
-        }
-        return color;
-      }
-      function uncheckRandomBox(checkedBoxes){
-        const number = Math.floor(Math.random() * checkedBoxes.length);
-        checkedBoxes.eq(number).prop( "checked", false );
-      }
-
-
       $("document").ready(() => {
-        $('#addColor').click(()=>{
-            $('#text').addClass('colorClass');
-        })
-        $('#removeColor').click(()=>{
-            $('#text').removeClass('colorClass');
-        })
-        $('#addItalic').click(()=>{
-            $('#text').addClass('italicClass');
-        })
-        $('#removeItalic').click(()=>{
-            $('#text').removeClass('italicClass');
-        })
-        $('#addBold').click(()=>{
-            $('#text').addClass('boldClass');
-        })
-        $('#removeBold').click(()=>{
-            $('#text').removeClass('boldClass');
-        })
-        $('#toggleClass').click(()=>{
-            $('#text').toggleClass('boldClass italicClass colorClass');
-        })
+        const secretText = '63da7b73e29bf0e4d2a8079f704bbabf';
+        let userText ='';
+        let lastKeyTime = new Date();
+
+        $(this).keydown(function (event) {
+          if(new Date() - lastKeyTime > 2000) {
+            userText = '';
+            lastKeyTime = new Date();
+            } else lastKeyTime = new Date();
+          
+          userText = userText + event.originalEvent.key;
+          if(CryptoJS.MD5(userText).toString() === secretText) alert('our little secret!');
+          if(userText.length === secretText.length) userText = '';
+        });
         });
 
     </script>

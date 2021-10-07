@@ -1,9 +1,4 @@
-var a = 2;
-const b = this;
-function function1(){
-    console.log(this);
+function da(){
+    console.log('i am inside');
 }
-const c = function1;
-
-console.log(this);
-console.log(global);
+console.log(da());
